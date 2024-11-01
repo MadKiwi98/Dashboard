@@ -5,17 +5,20 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Tech Dashboard</title>
   <style>
-    body {
+    * {
+      box-sizing: border-box;
+    }
+    body, html {
       font-family: Arial, sans-serif;
       margin: 0;
       padding: 0;
+      height: 100%;
       display: flex;
-      height: 100vh;
     }
     .sidebar {
-      width: 200px;
+      width: 220px;
       background-color: #001F3F;
-      color: white;
+      color: #FFFFFF;
       padding: 20px;
       display: flex;
       flex-direction: column;
@@ -31,23 +34,25 @@
       flex: 1;
     }
     .sidebar ul li {
-      margin: 10px 0;
+      margin: 15px 0;
     }
     .sidebar ul li button {
       background: none;
       border: none;
-      color: white;
+      color: #FFFFFF;
       font-size: 1em;
       cursor: pointer;
       text-align: left;
       width: 100%;
+      padding: 8px 0;
     }
     .sidebar ul li button:hover {
       color: #FF851B;
     }
     .content {
-      padding: 20px;
+      padding: 30px;
       flex: 1;
+      background-color: #F4F4F9;
       overflow-y: auto;
     }
     .section {
@@ -56,18 +61,34 @@
     .section.active {
       display: block;
     }
+    .section h1 {
+      color: #333333;
+      font-size: 1.8em;
+      margin-bottom: 10px;
+    }
+    .section p {
+      color: #666666;
+      font-size: 1.1em;
+    }
     .data-table {
       width: 100%;
       border-collapse: collapse;
-      margin-top: 10px;
+      margin-top: 20px;
     }
     .data-table th, .data-table td {
+      padding: 10px;
       border: 1px solid #ddd;
-      padding: 8px;
     }
     .data-table th {
-      background-color: #f2f2f2;
-      text-align: left;
+      background-color: #FF851B;
+      color: white;
+      font-weight: bold;
+    }
+    .data-table tr:nth-child(even) {
+      background-color: #f9f9f9;
+    }
+    .data-table tr:hover {
+      background-color: #FFDDC1;
     }
   </style>
 </head>
@@ -86,18 +107,18 @@
   <div class="content">
     <div id="overview" class="section active">
       <h1>Overview</h1>
-      <p>General information about the dairy shed operations.</p>
+      <p>This section provides a high-level overview of dairy shed operations and metrics.</p>
       <table class="data-table">
         <tr><th>Metric</th><th>Value</th></tr>
         <tr><td>Total Cows</td><td>150</td></tr>
         <tr><td>Average Milk Yield</td><td>25 liters/day</td></tr>
-        <tr><td>Last Inspection</td><td>2024-10-20</td></tr>
+        <tr><td>Last Inspection Date</td><td>2024-10-20</td></tr>
       </table>
     </div>
 
     <div id="plant-wash" class="section">
       <h1>Plant Wash</h1>
-      <p>Details on recent plant wash cycles.</p>
+      <p>Details about recent plant wash cycles.</p>
       <table class="data-table">
         <tr><th>Date</th><th>Duration</th><th>Temperature</th></tr>
         <tr><td>2024-10-30</td><td>15 min</td><td>75°C</td></tr>
@@ -108,7 +129,7 @@
 
     <div id="vat-wash" class="section">
       <h1>Vat Wash</h1>
-      <p>Details on recent vat wash processes.</p>
+      <p>Details about recent vat wash operations.</p>
       <table class="data-table">
         <tr><th>Date</th><th>Duration</th><th>Temperature</th></tr>
         <tr><td>2024-10-30</td><td>20 min</td><td>70°C</td></tr>
@@ -119,7 +140,7 @@
 
     <div id="teat-spray-mix" class="section">
       <h1>Teat Spray Mix</h1>
-      <p>Data on teat spray mixtures used recently.</p>
+      <p>Information about the teat spray mixtures used.</p>
       <table class="data-table">
         <tr><th>Date</th><th>Mixture Ratio</th><th>Volume Used</th></tr>
         <tr><td>2024-10-30</td><td>1:10</td><td>20 liters</td></tr>
@@ -130,7 +151,7 @@
 
     <div id="accounts" class="section">
       <h1>Accounts</h1>
-      <p>Account information for the dairy shed.</p>
+      <p>Overview of recent account transactions.</p>
       <table class="data-table">
         <tr><th>Account Name</th><th>Balance</th><th>Last Payment</th></tr>
         <tr><td>Farm Supplies</td><td>$1,200</td><td>2024-10-15</td></tr>
