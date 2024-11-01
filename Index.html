@@ -56,6 +56,19 @@
     .section.active {
       display: block;
     }
+    .data-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 10px;
+    }
+    .data-table th, .data-table td {
+      border: 1px solid #ddd;
+      padding: 8px;
+    }
+    .data-table th {
+      background-color: #f2f2f2;
+      text-align: left;
+    }
   </style>
 </head>
 <body>
@@ -73,23 +86,57 @@
   <div class="content">
     <div id="overview" class="section active">
       <h1>Overview</h1>
-      <p>Loading overview data...</p>
+      <p>General information about the dairy shed operations.</p>
+      <table class="data-table">
+        <tr><th>Metric</th><th>Value</th></tr>
+        <tr><td>Total Cows</td><td>150</td></tr>
+        <tr><td>Average Milk Yield</td><td>25 liters/day</td></tr>
+        <tr><td>Last Inspection</td><td>2024-10-20</td></tr>
+      </table>
     </div>
+
     <div id="plant-wash" class="section">
       <h1>Plant Wash</h1>
-      <p>Loading plant wash data...</p>
+      <p>Details on recent plant wash cycles.</p>
+      <table class="data-table">
+        <tr><th>Date</th><th>Duration</th><th>Temperature</th></tr>
+        <tr><td>2024-10-30</td><td>15 min</td><td>75°C</td></tr>
+        <tr><td>2024-10-29</td><td>14 min</td><td>73°C</td></tr>
+        <tr><td>2024-10-28</td><td>16 min</td><td>76°C</td></tr>
+      </table>
     </div>
+
     <div id="vat-wash" class="section">
       <h1>Vat Wash</h1>
-      <p>Loading vat wash data...</p>
+      <p>Details on recent vat wash processes.</p>
+      <table class="data-table">
+        <tr><th>Date</th><th>Duration</th><th>Temperature</th></tr>
+        <tr><td>2024-10-30</td><td>20 min</td><td>70°C</td></tr>
+        <tr><td>2024-10-29</td><td>18 min</td><td>71°C</td></tr>
+        <tr><td>2024-10-28</td><td>19 min</td><td>72°C</td></tr>
+      </table>
     </div>
+
     <div id="teat-spray-mix" class="section">
       <h1>Teat Spray Mix</h1>
-      <p>Loading teat spray mix data...</p>
+      <p>Data on teat spray mixtures used recently.</p>
+      <table class="data-table">
+        <tr><th>Date</th><th>Mixture Ratio</th><th>Volume Used</th></tr>
+        <tr><td>2024-10-30</td><td>1:10</td><td>20 liters</td></tr>
+        <tr><td>2024-10-29</td><td>1:12</td><td>18 liters</td></tr>
+        <tr><td>2024-10-28</td><td>1:11</td><td>19 liters</td></tr>
+      </table>
     </div>
+
     <div id="accounts" class="section">
       <h1>Accounts</h1>
-      <p>Loading accounts data...</p>
+      <p>Account information for the dairy shed.</p>
+      <table class="data-table">
+        <tr><th>Account Name</th><th>Balance</th><th>Last Payment</th></tr>
+        <tr><td>Farm Supplies</td><td>$1,200</td><td>2024-10-15</td></tr>
+        <tr><td>Maintenance</td><td>$850</td><td>2024-10-10</td></tr>
+        <tr><td>Feed</td><td>$2,300</td><td>2024-10-12</td></tr>
+      </table>
     </div>
   </div>
 
@@ -100,21 +147,7 @@
         section.classList.remove('active');
       });
       document.getElementById(id).classList.add('active');
-      loadData(id);
     }
-
-    // Function to simulate data loading for each section
-    function loadData(section) {
-      setTimeout(() => {
-        document.getElementById(section).querySelector('p').textContent = `Data loaded for ${section}`;
-      }, 500); // Simulate a delay
-    }
-
-    // Load initial data for the active section
-    document.addEventListener('DOMContentLoaded', () => {
-      const activeSection = document.querySelector('.section.active').id;
-      loadData(activeSection);
-    });
   </script>
 </body>
 </html>
