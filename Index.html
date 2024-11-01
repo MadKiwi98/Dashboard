@@ -1,207 +1,110 @@
-// src/index.js
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tech Dashboard</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      display: flex;
+    }
+    .sidebar {
+      width: 200px;
+      background-color: #001F3F;
+      color: white;
+      padding: 20px;
+    }
+    .sidebar h2 {
+      font-size: 1.5em;
+      color: #FF851B;
+    }
+    .sidebar ul {
+      list-style-type: none;
+      padding: 0;
+    }
+    .sidebar ul li {
+      margin: 10px 0;
+    }
+    .sidebar ul li a {
+      color: white;
+      text-decoration: none;
+      cursor: pointer;
+    }
+    .sidebar ul li a:hover {
+      color: #FF851B;
+    }
+    .content {
+      padding: 20px;
+      flex: 1;
+    }
+    .section {
+      display: none;
+    }
+    .section.active {
+      display: block;
+    }
+  </style>
+</head>
+<body>
+  <div class="sidebar">
+    <h2>Tech Dashboard</h2>
+    <ul>
+      <li><a onclick="showSection('overview')">Overview</a></li>
+      <li><a onclick="showSection('plant-wash')">Plant Wash</a></li>
+      <li><a onclick="showSection('vat-wash')">Vat Wash</a></li>
+      <li><a onclick="showSection('teat-spray-mix')">Teat Spray Mix</a></li>
+      <li><a onclick="showSection('accounts')">Accounts</a></li>
+    </ul>
+  </div>
 
-import React from 'react';
-import ReactDOM from 'react-dom';
-import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
-import axios from 'axios';
-import './index.css';
-
-// Define the API base URL
-const API_BASE_URL = 'https://your-api-endpoint.com'; // replace with your actual API URL
-
-// Helper function to fetch data from an API endpoint
-const fetchData = async (endpoint) => {
-  try {
-    const response = await axios.get(`${API_BASE_URL}/${endpoint}`);
-    return response.data;
-  } catch (error) {
-    console.error(`Error fetching data from ${endpoint}:`, error);
-    return null;
-  }
-};
-
-// Sidebar Component
-function Sidebar() {
-  return (
-    <div className="sidebar">
-      <h2>Dairy Shed Dashboard</h2>
-      <ul>
-        <li><Link to="/overview">Overview</Link></li>
-        <li><Link to="/plant-wash">Plant Wash</Link></li>
-        <li><Link to="/vat-wash">Vat Wash</Link></li>
-        <li><Link to="/teat-spray-mix">Teat Spray Mix</Link></li>
-        <li><Link to="/accounts">Accounts</Link></li>
-      </ul>
-    </div>
-  );
-}
-
-// Overview Component
-function Overview() {
-  const [data, setData] = React.useState(null);
-
-  React.useEffect(() => {
-    const getData = async () => {
-      const result = await fetchData('overview');
-      setData(result);
-    };
-    getData();
-  }, []);
-
-  return (
-    <div>
+  <div class="content">
+    <div id="overview" class="section active">
       <h1>Overview</h1>
-      {data ? <pre>{JSON.stringify(data, null, 2)}</pre> : <p>Loading...</p>}
+      <p>Loading data...</p>
     </div>
-  );
-}
-
-// Plant Wash Component
-function PlantWash() {
-  const [data, setData] = React.useState(null);
-
-  React.useEffect(() => {
-    const getData = async () => {
-      const result = await fetchData('plant-wash');
-      setData(result);
-    };
-    getData();
-  }, []);
-
-  return (
-    <div>
+    <div id="plant-wash" class="section">
       <h1>Plant Wash</h1>
-      {data ? <pre>{JSON.stringify(data, null, 2)}</pre> : <p>Loading...</p>}
+      <p>Loading data...</p>
     </div>
-  );
-}
-
-// Vat Wash Component
-function VatWash() {
-  const [data, setData] = React.useState(null);
-
-  React.useEffect(() => {
-    const getData = async () => {
-      const result = await fetchData('vat-wash');
-      setData(result);
-    };
-    getData();
-  }, []);
-
-  return (
-    <div>
+    <div id="vat-wash" class="section">
       <h1>Vat Wash</h1>
-      {data ? <pre>{JSON.stringify(data, null, 2)}</pre> : <p>Loading...</p>}
+      <p>Loading data...</p>
     </div>
-  );
-}
-
-// Teat Spray Mix Component
-function TeatSprayMix() {
-  const [data, setData] = React.useState(null);
-
-  React.useEffect(() => {
-    const getData = async () => {
-      const result = await fetchData('teat-spray-mix');
-      setData(result);
-    };
-    getData();
-  }, []);
-
-  return (
-    <div>
+    <div id="teat-spray-mix" class="section">
       <h1>Teat Spray Mix</h1>
-      {data ? <pre>{JSON.stringify(data, null, 2)}</pre> : <p>Loading...</p>}
+      <p>Loading data...</p>
     </div>
-  );
-}
-
-// Accounts Component
-function Accounts() {
-  const [data, setData] = React.useState(null);
-
-  React.useEffect(() => {
-    const getData = async () => {
-      const result = await fetchData('accounts');
-      setData(result);
-    };
-    getData();
-  }, []);
-
-  return (
-    <div>
+    <div id="accounts" class="section">
       <h1>Accounts</h1>
-      {data ? <pre>{JSON.stringify(data, null, 2)}</pre> : <p>Loading...</p>}
+      <p>Loading data...</p>
     </div>
-  );
-}
+  </div>
 
-// Main App Component
-function App() {
-  return (
-    <Router>
-      <div className="app">
-        <Sidebar />
-        <div className="content">
-          <Switch>
-            <Route path="/overview" component={Overview} />
-            <Route path="/plant-wash" component={PlantWash} />
-            <Route path="/vat-wash" component={VatWash} />
-            <Route path="/teat-spray-mix" component={TeatSprayMix} />
-            <Route path="/accounts" component={Accounts} />
-          </Switch>
-        </div>
-      </div>
-    </Router>
-  );
-}
+  <script>
+    // Function to show a specific section and hide others
+    function showSection(id) {
+      document.querySelectorAll('.section').forEach((section) => {
+        section.classList.remove('active');
+      });
+      document.getElementById(id).classList.add('active');
+      fetchData(id);
+    }
 
-// CSS Styling (Optional)
-/* Add this to index.css or App.css */
-const css = `
-.app {
-  display: flex;
-}
+    // Function to simulate API data fetching
+    function fetchData(section) {
+      setTimeout(() => {
+        document.getElementById(section).querySelector('p').textContent = `Data loaded for ${section}`;
+      }, 500); // Simulate a delay
+    }
 
-.sidebar {
-  width: 200px;
-  padding: 20px;
-  background-color: #001F3F;
-  color: white;
-}
-
-.sidebar h2 {
-  font-size: 1.5em;
-}
-
-.sidebar ul {
-  list-style-type: none;
-  padding: 0;
-}
-
-.sidebar ul li {
-  margin: 10px 0;
-}
-
-.sidebar ul li a {
-  color: white;
-  text-decoration: none;
-}
-
-.sidebar ul li a:hover {
-  color: #FF851B;
-}
-
-.content {
-  padding: 20px;
-  flex: 1;
-}
-`;
-
-// Render the App
-ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
-);
+    // Load initial data for the active section
+    document.addEventListener('DOMContentLoaded', () => {
+      const activeSection = document.querySelector('.section.active').id;
+      fetchData(activeSection);
+    });
+  </script>
+</body>
+</html>
