@@ -1,0 +1,207 @@
+// src/index.js
+
+import React from 'react';
+import ReactDOM from 'react-dom';
+import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
+import axios from 'axios';
+import './index.css';
+
+// Define the API base URL
+const API_BASE_URL = 'https://your-api-endpoint.com'; // replace with your actual API URL
+
+// Helper function to fetch data from an API endpoint
+const fetchData = async (endpoint) => {
+  try {
+    const response = await axios.get(`${API_BASE_URL}/${endpoint}`);
+    return response.data;
+  } catch (error) {
+    console.error(`Error fetching data from ${endpoint}:`, error);
+    return null;
+  }
+};
+
+// Sidebar Component
+function Sidebar() {
+  return (
+    <div className="sidebar">
+      <h2>Dairy Shed Dashboard</h2>
+      <ul>
+        <li><Link to="/overview">Overview</Link></li>
+        <li><Link to="/plant-wash">Plant Wash</Link></li>
+        <li><Link to="/vat-wash">Vat Wash</Link></li>
+        <li><Link to="/teat-spray-mix">Teat Spray Mix</Link></li>
+        <li><Link to="/accounts">Accounts</Link></li>
+      </ul>
+    </div>
+  );
+}
+
+// Overview Component
+function Overview() {
+  const [data, setData] = React.useState(null);
+
+  React.useEffect(() => {
+    const getData = async () => {
+      const result = await fetchData('overview');
+      setData(result);
+    };
+    getData();
+  }, []);
+
+  return (
+    <div>
+      <h1>Overview</h1>
+      {data ? <pre>{JSON.stringify(data, null, 2)}</pre> : <p>Loading...</p>}
+    </div>
+  );
+}
+
+// Plant Wash Component
+function PlantWash() {
+  const [data, setData] = React.useState(null);
+
+  React.useEffect(() => {
+    const getData = async () => {
+      const result = await fetchData('plant-wash');
+      setData(result);
+    };
+    getData();
+  }, []);
+
+  return (
+    <div>
+      <h1>Plant Wash</h1>
+      {data ? <pre>{JSON.stringify(data, null, 2)}</pre> : <p>Loading...</p>}
+    </div>
+  );
+}
+
+// Vat Wash Component
+function VatWash() {
+  const [data, setData] = React.useState(null);
+
+  React.useEffect(() => {
+    const getData = async () => {
+      const result = await fetchData('vat-wash');
+      setData(result);
+    };
+    getData();
+  }, []);
+
+  return (
+    <div>
+      <h1>Vat Wash</h1>
+      {data ? <pre>{JSON.stringify(data, null, 2)}</pre> : <p>Loading...</p>}
+    </div>
+  );
+}
+
+// Teat Spray Mix Component
+function TeatSprayMix() {
+  const [data, setData] = React.useState(null);
+
+  React.useEffect(() => {
+    const getData = async () => {
+      const result = await fetchData('teat-spray-mix');
+      setData(result);
+    };
+    getData();
+  }, []);
+
+  return (
+    <div>
+      <h1>Teat Spray Mix</h1>
+      {data ? <pre>{JSON.stringify(data, null, 2)}</pre> : <p>Loading...</p>}
+    </div>
+  );
+}
+
+// Accounts Component
+function Accounts() {
+  const [data, setData] = React.useState(null);
+
+  React.useEffect(() => {
+    const getData = async () => {
+      const result = await fetchData('accounts');
+      setData(result);
+    };
+    getData();
+  }, []);
+
+  return (
+    <div>
+      <h1>Accounts</h1>
+      {data ? <pre>{JSON.stringify(data, null, 2)}</pre> : <p>Loading...</p>}
+    </div>
+  );
+}
+
+// Main App Component
+function App() {
+  return (
+    <Router>
+      <div className="app">
+        <Sidebar />
+        <div className="content">
+          <Switch>
+            <Route path="/overview" component={Overview} />
+            <Route path="/plant-wash" component={PlantWash} />
+            <Route path="/vat-wash" component={VatWash} />
+            <Route path="/teat-spray-mix" component={TeatSprayMix} />
+            <Route path="/accounts" component={Accounts} />
+          </Switch>
+        </div>
+      </div>
+    </Router>
+  );
+}
+
+// CSS Styling (Optional)
+/* Add this to index.css or App.css */
+const css = `
+.app {
+  display: flex;
+}
+
+.sidebar {
+  width: 200px;
+  padding: 20px;
+  background-color: #001F3F;
+  color: white;
+}
+
+.sidebar h2 {
+  font-size: 1.5em;
+}
+
+.sidebar ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.sidebar ul li {
+  margin: 10px 0;
+}
+
+.sidebar ul li a {
+  color: white;
+  text-decoration: none;
+}
+
+.sidebar ul li a:hover {
+  color: #FF851B;
+}
+
+.content {
+  padding: 20px;
+  flex: 1;
+}
+`;
+
+// Render the App
+ReactDOM.render(
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>,
+  document.getElementById('root')
+);
