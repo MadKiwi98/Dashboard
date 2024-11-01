@@ -10,35 +10,45 @@
       margin: 0;
       padding: 0;
       display: flex;
+      height: 100vh;
     }
     .sidebar {
       width: 200px;
       background-color: #001F3F;
       color: white;
       padding: 20px;
+      display: flex;
+      flex-direction: column;
     }
     .sidebar h2 {
       font-size: 1.5em;
       color: #FF851B;
+      margin-bottom: 1em;
     }
     .sidebar ul {
       list-style-type: none;
       padding: 0;
+      flex: 1;
     }
     .sidebar ul li {
       margin: 10px 0;
     }
-    .sidebar ul li a {
+    .sidebar ul li button {
+      background: none;
+      border: none;
       color: white;
-      text-decoration: none;
+      font-size: 1em;
       cursor: pointer;
+      text-align: left;
+      width: 100%;
     }
-    .sidebar ul li a:hover {
+    .sidebar ul li button:hover {
       color: #FF851B;
     }
     .content {
       padding: 20px;
       flex: 1;
+      overflow-y: auto;
     }
     .section {
       display: none;
@@ -52,11 +62,11 @@
   <div class="sidebar">
     <h2>Tech Dashboard</h2>
     <ul>
-      <li><a onclick="showSection('overview')">Overview</a></li>
-      <li><a onclick="showSection('plant-wash')">Plant Wash</a></li>
-      <li><a onclick="showSection('vat-wash')">Vat Wash</a></li>
-      <li><a onclick="showSection('teat-spray-mix')">Teat Spray Mix</a></li>
-      <li><a onclick="showSection('accounts')">Accounts</a></li>
+      <li><button onclick="showSection('overview')">Overview</button></li>
+      <li><button onclick="showSection('plant-wash')">Plant Wash</button></li>
+      <li><button onclick="showSection('vat-wash')">Vat Wash</button></li>
+      <li><button onclick="showSection('teat-spray-mix')">Teat Spray Mix</button></li>
+      <li><button onclick="showSection('accounts')">Accounts</button></li>
     </ul>
   </div>
 
@@ -84,26 +94,26 @@
   </div>
 
   <script>
-    // Function to show a specific section and hide others
+    // Function to display a specific section and hide others without changing the URL
     function showSection(id) {
-      document.querySelectorAll('.section').forEach((section) => {
+      document.querySelectorAll('.section').forEach(section => {
         section.classList.remove('active');
       });
       document.getElementById(id).classList.add('active');
-      fetchData(id);
+      loadData(id);
     }
 
-    // Simulate data loading for each section
-    function fetchData(section) {
+    // Function to simulate data loading for each section
+    function loadData(section) {
       setTimeout(() => {
         document.getElementById(section).querySelector('p').textContent = `Data loaded for ${section}`;
-      }, 500); // Simulated delay
+      }, 500); // Simulate a delay
     }
 
-    // Initialize first section data
+    // Load initial data for the active section
     document.addEventListener('DOMContentLoaded', () => {
       const activeSection = document.querySelector('.section.active').id;
-      fetchData(activeSection);
+      loadData(activeSection);
     });
   </script>
 </body>
