@@ -63,23 +63,23 @@
   <div class="content">
     <div id="overview" class="section active">
       <h1>Overview</h1>
-      <p>Loading data...</p>
+      <p>Loading overview data...</p>
     </div>
     <div id="plant-wash" class="section">
       <h1>Plant Wash</h1>
-      <p>Loading data...</p>
+      <p>Loading plant wash data...</p>
     </div>
     <div id="vat-wash" class="section">
       <h1>Vat Wash</h1>
-      <p>Loading data...</p>
+      <p>Loading vat wash data...</p>
     </div>
     <div id="teat-spray-mix" class="section">
       <h1>Teat Spray Mix</h1>
-      <p>Loading data...</p>
+      <p>Loading teat spray mix data...</p>
     </div>
     <div id="accounts" class="section">
       <h1>Accounts</h1>
-      <p>Loading data...</p>
+      <p>Loading accounts data...</p>
     </div>
   </div>
 
@@ -93,14 +93,14 @@
       fetchData(id);
     }
 
-    // Function to simulate API data fetching
+    // Simulate data loading for each section
     function fetchData(section) {
       setTimeout(() => {
         document.getElementById(section).querySelector('p').textContent = `Data loaded for ${section}`;
-      }, 500); // Simulate a delay
+      }, 500); // Simulated delay
     }
 
-    // Load initial data for the active section
+    // Initialize first section data
     document.addEventListener('DOMContentLoaded', () => {
       const activeSection = document.querySelector('.section.active').id;
       fetchData(activeSection);
